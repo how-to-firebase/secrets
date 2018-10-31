@@ -1,0 +1,23 @@
+{
+  "name": "secrets",
+  "version": "1.0.0",
+  "description": "We're going to workshop our way through to a functional web application built on the Firebase platform.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "firebase-tools": "^6.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/how-to-firebase/secrets.git"
+  },
+  "author": "Chris Esplin <chris@chrisesplin.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/how-to-firebase/secrets/issues"
+  },
+  "homepage": "https://github.com/how-to-firebase/secrets#readme"
+}
