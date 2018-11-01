@@ -7,7 +7,33 @@
   <title>Secrets</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/material-components-web@0.27.0/dist/material-components-web.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-database.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-functions.js"></script> -->
+
+  <!-- Comment out (or don't include) services that you don't want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-storage.js"></script> -->
+
+  <script>
+    firebase.initializeApp({
+      "apiKey": "AIzaSyAAZJPjhsSQ9gbyuoWp16fYrm0qtlYCWuo",
+      "databaseURL": "https://how-to-firebase-secrets.firebaseio.com",
+      "storageBucket": "how-to-firebase-secrets.appspot.com",
+      "authDomain": "how-to-firebase-secrets.firebaseapp.com",
+      "messagingSenderId": "251294611949",
+      "projectId": "how-to-firebase-secrets"
+    });
+  </script>
 </head>
 
 <body class="mdc-typography">
