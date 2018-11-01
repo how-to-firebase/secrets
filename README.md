@@ -14,7 +14,7 @@ We'll use a Node package named [npx](https://github.com/zkat/npx) to run some of
 
 ## Create a Firebase project
 
-- Visit `https://console.firebase.google.com/` and create a project. 
+- Visit `https://console.firebase.google.com/` and create a project.
 - Name the project whatever you'd like. The options here don't matter much.
 
 ## Enable the Firebase Tools CLI
@@ -31,7 +31,7 @@ The `firebase-tools` CLI can now be accessed by running `npx firebase`.
 - `npm install` to install the front-end dependencies
 - `cd functions && npm install` to install Cloud Functions dependencies
 - `cd functions && npm test` to run Cloud Functions tests
-- 
+-
 - `npm run-script deploy` to deploy the Firebase app
 
 ## Installation for workshop
@@ -43,7 +43,7 @@ The `firebase-tools` CLI can now be accessed by running `npx firebase`.
   - Use the arrow keys to install all of the Firebase CLI features
   - Select the project that you're using for this workshop
   - Accept the defaults
-  - You'll know you're done when you see `+  Firebase initialization complete!` in your terminal
+  - You'll know you're done when you see `+ Firebase initialization complete!` in your terminal
 
 ## firebase init
 
@@ -66,10 +66,12 @@ Check out `.firebaserc.dist` for an example of the file.
 
 Run `npx firebase serve` to run a local Firebase Hosting emulator. Open [http://localhost:5000/](http://localhost:5000/) to see what you have so far.
 
-The page you see is served from the `/public` folder. We'll be overwriting them soon, so don't get attached.
+The page you see is served from the `/public` folder. We'll be overwriting these files soon, so don't get attached.
 
 ## Run local dev server
 
 We're using the [Parcel](https://parceljs.org/getting_started.html) app bundler and dev server.
 
-Parcel is mostly automated, so there isn't much to manage yourself. The Parcel commands that we'll use are within the `package.json` scripts and can be called with `npm run-script serve` and `npm run-script build`. 
+Parcel is mostly automated, so there isn't much to manage yourself. The Parcel commands that we'll use are within the `package.json` scripts and can be called with `npm run-script serve` and `npm run-script build`.
+
+Run `npm run-script serve` to get your local dev server running. The terminal will tell you which port on `localhost` to use to view your page. The default url is [http://localhost:1234/](http://localhost:1234/)
