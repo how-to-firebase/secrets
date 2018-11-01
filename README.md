@@ -68,3 +68,8 @@ Run `npx firebase serve` to run a local Firebase Hosting emulator. Open [http://
 
 The page you see is served from the `/public` folder. We'll be overwriting them soon, so don't get attached.
 
+## Run local dev server
+
+We're using the [Parcel](https://parceljs.org/getting_started.html) app bundler and dev server.
+
+Parcel is mostly automated, so there isn't much to manage yourself. The Parcel commands that we'll use are within the `package.json` scripts and can be called with `npm run-script serve` and `npm run-script build`. 

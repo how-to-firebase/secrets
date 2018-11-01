@@ -2,13 +2,21 @@
   "name": "secrets",
   "version": "1.0.0",
   "description": "We're going to workshop our way through to a functional web application built on the Firebase platform.",
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {},
   "devDependencies": {
-    "firebase-tools": "^6.0.0"
+    "@babel/core": "^7.1.2",
+    "@babel/preset-react": "^7.0.0",
+    "firebase-tools": "^6.0.0",
+    "parcel-bundler": "^1.10.3",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "rmwc": "^3.0.9"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "parcel src/index.html",
+    "build": "parcel build src/index.html --out-dir public"
   },
   "repository": {
     "type": "git",
