@@ -1,5 +1,5 @@
 body {
-  margin: -22px 0 0;
+  margin: 0;
 }
 
 #login {
@@ -8,4 +8,24 @@ body {
   align-items: center;
 
   height: 100vh;
+}
+
+#logged-in .content {
+  padding-top: 5rem;
+  min-height: calc(100vh - 5rem);
+}
+
+#logged-in .add-vault-fab {
+  position: fixed;
+  right: 4rem;
+  top: 2rem;
+  z-index: 4;
+}
+
+#vaults .empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 25vh;
 }
