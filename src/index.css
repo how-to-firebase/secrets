@@ -1,0 +1,11 @@
+body {
+  margin: -22px 0 0;
+}
+
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+}
