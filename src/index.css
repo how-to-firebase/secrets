@@ -29,3 +29,24 @@ body {
 
   padding-top: 25vh;
 }
+
+#vaults .mdc-list {
+  margin: 0 1rem;
+}
+
+#vault {
+  padding: 1rem 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+form > * {
+  margin: 1rem 0;
+  width: 100% !important;
+}
+

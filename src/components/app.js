@@ -8,7 +8,6 @@ export default class App extends React.Component {
 
     this.state = {
       currentUser: null,
-      vaults: [],
     };
   }
 
@@ -33,8 +32,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { currentUser, vaults } = this.state;
+    const { currentUser } = this.state;
 
-    return currentUser ? <LoggedIn currentUser={currentUser} vaults={vaults} /> : <Login />;
+    return currentUser ? <LoggedIn currentUser={currentUser} /> : <Login />;
   }
 }

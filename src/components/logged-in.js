@@ -1,15 +1,50 @@
 import React from 'react';
-import { SimpleTopAppBar } from '@rmwc/top-app-bar';
 import { Fab } from '@rmwc/fab';
+import { Snackbar } from '@rmwc/snackbar';
+import { SimpleTopAppBar } from '@rmwc/top-app-bar';
 
+import Vault from './vault';
 import Vaults from './vaults';
+import addVault from '../database/add-vault';
+import getVaults from '../database/get-vaults';
 
 import '@material/fab/dist/mdc.fab.css';
+import '@material/snackbar/dist/mdc.snackbar.css';
 import '@material/top-app-bar/dist/mdc.top-app-bar.css';
 
 export default class LoggedIn extends React.Component {
+  constructor() {
+    super();
+
+    this.state = this.localStorageState || {
+      selectedVaultId: '',
+      snackbarText: '',
+      vaults: [],
+    };
+  }
+
   get firebase() {
     return window.firebase;
+  }
+
+  get localStorageStateName() {
+    return 'logged-in-state';
+  }
+
+  get localStorageState() {
+    return JSON.parse(window.localStorage.getItem(this.localStorageStateName));
+  }
+
+  set localStorageState(state) {
+    window.localStorage.setItem(this.localStorageStateName, JSON.stringify(this.state));
+  }
+
+  async componentDidMount() {
+    await this.getUserVaults();
+  }
+
+  componentDidUpdate() {
+    this.localStorageState = this.state;
   }
 
   handleSignOutClick() {
@@ -26,12 +61,37 @@ export default class LoggedIn extends React.Component {
     this.firebase.auth().signOut();
   }
 
-  handleAddVaultClick() {
-    console.log('add vault clicked');
+  async handleAddVaultClick() {
+    const { currentUser } = this.props;
+
+    await addVault(this.firebase, currentUser.uid);
+
+    await this.getUserVaults();
+
+    this.setSnackbarText('Vault added');
+  }
+
+  async getUserVaults() {
+    const { currentUser } = this.props;
+
+    const vaults = await getVaults(this.firebase, currentUser.uid);
+
+    this.setState({ vaults });
+  }
+
+  setSnackbarText(snackbarText) {
+    this.setState({ snackbarText });
+  }
+
+  async handleBack() {
+    await this.getUserVaults();
+
+    this.setState({ selectedVaultId: '' });
   }
 
   render() {
-    const { currentUser, vaults } = this.props;
+    const { currentUser } = this.props;
+    const { selectedVaultId, snackbarText, vaults } = this.state;
 
     return (
       <div id="logged-in">
@@ -41,9 +101,25 @@ export default class LoggedIn extends React.Component {
           actionItems={[{ onClick: this.handleSignOutClick.bind(this), icon: 'power_off' }]}
         />
         <div className="content">
-          <Vaults vaults={vaults} />
+          {selectedVaultId ? (
+            <Vault
+              uid={currentUser.uid}
+              vaultId={selectedVaultId}
+              onBack={this.handleBack.bind(this)}
+            />
+          ) : (
+            <Vaults
+              vaults={vaults}
+              onVaultSelected={selectedVaultId => this.setState({ selectedVaultId })}
+            />
+          )}
         </div>
         <Fab className="add-vault-fab" icon="add" onClick={this.handleAddVaultClick.bind(this)} />
+        <Snackbar
+          show={!!snackbarText}
+          message={snackbarText}
+          onHide={() => this.setSnackbarText('')}
+        />
       </div>
     );
   }
