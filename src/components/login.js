@@ -26,11 +26,7 @@ export default class Login extends React.Component {
      * 8. Call `firebase.auth().currentUser` in DevToolsto see your currentUser object 
      */
 
-    const provider = new this.firebase.auth.GoogleAuthProvider();
-
-    provider.addScope('email');
-
-    this.firebase.auth().signInWithPopup(provider);
+    // TODO: Implement Task
   }
 
   render() {

@@ -91,9 +91,11 @@ This is a bit of an advanced tricky, but let's do it!
 
 Open up the [Firebase web setup docs](https://firebase.google.com/docs/web/setup) and scroll down to the CDN script tags. Copy the entire block and paste it into your `src/index.html` file at the bottom of the `<head></head>` tag.
 
-We'll start with just the `firebase-app.js` and `firebase-auth.js` scripts. We'll add others as we progress through the build. So go ahead and comment out or delete the other script tags.
+We'll use `firebase-app.js`, `firebase-auth.js`, `firebase-firestore.js` and `firebase-functions.js` scripts. So go ahead and comment out or delete the other script tags.
 
 Finally, notice the script tag that contains `firebase.initializeApp(config)`. Replace the guts of that `<script>` tag with the contents of `__/firebase/init.js`. You can delete the first line if `init.js`... or leave it. It's up to you!
+
+Now add `firebase.firestore().settings({ timestampsInSnapshots: true });` to the end of the script tag. You don't need to understand this setting, but omitting it will result in nasty console errors.
 
 The final result should look something like this:
 
@@ -104,14 +106,14 @@ The final result should look something like this:
   <!-- Firebase App is always required and must be first -->
   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-app.js"></script>
 
-  <!-- Add additional services that you want to use -->
+    <!-- Add additional services that you want to use -->
   <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-auth.js"></script>
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-database.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script> -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-functions.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-functions.js"></script>
 
   <!-- Comment out (or don't include) services that you don't want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-database.js"></script> -->
   <!-- <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-storage.js"></script> -->
 
   <script>
@@ -123,6 +125,8 @@ The final result should look something like this:
       "messagingSenderId": "251294611949",
       "projectId": "how-to-firebase-secrets"
     });
+
+    firebase.firestore().settings({ timestampsInSnapshots: true });
   </script>
 </head>
 ```
@@ -159,3 +163,60 @@ Signing out with Firebase Authentication is EASY!
 
 You can find the completed code on the `complete` branch of this repo: [logged-in.js](https://github.com/how-to-firebase/secrets/blob/complete/src/components/logged-in.js)
 
+## Task 4: Prepare to add a Firestore record
+
+**File:** `src/database/add-vault.js`
+
+You won't be able to actually add a record until you've completed Task 5. This step succeeds when you get your first `Missing or insufficient permissions` error.
+
+You can find the completed code on the `complete` branch of this repo: [add-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/add-vault.js)
+
+## Task 5: Add your first security rule
+
+**File:** `firestore.rules`
+
+You created `firestore.rules` earlier when calling `npx firebase init`. `firestore.rules` contains the security rules that you'll need to secure your Firestore database.
+
+Review [Firestore security rules](https://firebase.google.com/docs/firestore/security/get-started) to see how flexible they can be.
+
+We're not going to go deep into security rules. That would be a different workshop. So just make sure that your `firestore.rules` file looks like this:
+
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /user-owned/{uid}/vaults/{vaultId} {
+      allow read, write: if request.auth.uid == uid
+    }
+  }
+}
+```
+
+Then call `npx firebase deploy --only firestore` to deploy your Firestore rules.
+
+Now you can add the vaults that you wanted in Task 4!
+
+## Task 6: Query your vaults
+
+**File:** `firestore.rules`
+
+You created `firestore.rules` earlier when calling `npx firebase init`. `firestore.rules` contains the security rules that you'll need to secure your Firestore database.
+
+Review [Firestore security rules](https://firebase.google.com/docs/firestore/security/get-started) to see how flexible they can be.
+
+## Task 7: Listen to vault changes
+
+**File:** `src/database/sync-vault.js`
+
+You can find the completed code on the `complete` branch of this repo: [sync-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/sync-vault.js)
+
+## Task 8: Update the vault
+
+**File:** `src/database/update-vault.js`
+
+You can find the completed code on the `complete` branch of this repo: [update-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/update-vault.js)
+
+## Task 9: Call the Cloud Function
+
+**File:** `src/database/encrypt-vault.js`
+
+You can find the completed code on the `complete` branch of this repo: [encrypt-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/encrypt-vault.js)

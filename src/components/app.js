@@ -8,7 +8,6 @@ export default class App extends React.Component {
 
     this.state = {
       currentUser: null,
-      vaults: [],
     };
   }
 
@@ -29,12 +28,13 @@ export default class App extends React.Component {
      * 1. Use `onAuthStateChanged` to call this.setState({ currentUser })
      * 2. You'll know you've logged in when you see the "Log Out"
      */
-    this.firebase.auth().onAuthStateChanged(currentUser => this.setState({ currentUser }));
+    
+     // TODO: Implement Task
   }
 
   render() {
-    const { currentUser, vaults } = this.state;
+    const { currentUser } = this.state;
 
-    return currentUser ? <LoggedIn currentUser={currentUser} vaults={vaults} /> : <Login />;
+    return currentUser ? <LoggedIn currentUser={currentUser} /> : <Login />;
   }
 }

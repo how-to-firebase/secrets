@@ -6,9 +6,11 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "firebase-tools": "^6.0.0",
     "parcel-bundler": "^1.10.3",
+    "parcel-plugin-clean-dist": "0.0.6",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "rmwc": "^3.0.9"
