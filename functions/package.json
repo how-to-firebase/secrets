@@ -2,6 +2,7 @@
   "name": "functions",
   "description": "Cloud Functions for Firebase",
   "scripts": {
+    "test": "jest --watchAll",
     "serve": "firebase serve --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
@@ -13,7 +14,11 @@
     "firebase-functions": "^2.1.0"
   },
   "private": true,
+  "engines": {
+    "node": "8"
+  },
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "uuid": "^3.3.2"
   }
 }

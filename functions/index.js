@@ -1,8 +1,8 @@
 const functions = require('firebase-functions');
+const context = require('./utilities/prod-context');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+// Encrypt
+const Encrypt = require('./src/encrypt');
+const encrypt = Encrypt(context);
+
+exports.encrypt = functions.https.onCall(encrypt);
