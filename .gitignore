@@ -64,6 +64,7 @@ typings/
 .firebase
 .firebaserc
 public
+service-account.json
 
 # Parcel
 .cache

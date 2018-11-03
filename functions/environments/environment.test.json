@@ -1,0 +1,5 @@
+{
+  "firebase": {
+    "databaseURL": "https://how-to-firebase-secrets.firebaseio.com"
+  }
+}

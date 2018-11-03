@@ -17,7 +17,11 @@ export default (firebase, uid, vaultId, callback) => {
     .doc(uid)
     .collection('vaults')
     .doc(vaultId)
-    .onSnapshot(doc => callback(doc.data()));
+    .onSnapshot(doc => {
+      // console.log('doc.id', doc.id);
+      // console.log('doc.data()', doc.data());
+      return callback(doc.data());
+    });
 
   return unsubscribe;
 };

@@ -14,10 +14,9 @@ export default (firebase, uid, vaultId, { password, secret }) => {
    * We'll write the Cloud Function next.
    */
   const payload = {
-    uid,
-    vaultId,
     password,
     secret,
+    vaultId,
   };
   const encrypt = firebase.functions().httpsCallable('encrypt');
 
