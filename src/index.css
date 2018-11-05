@@ -15,7 +15,7 @@ body {
   min-height: calc(100vh - 5rem);
 }
 
-#logged-in .fab {
+#logged-in .mdc-fab {
   position: fixed;
   right: 4rem;
   top: 2rem;

@@ -40,12 +40,6 @@ describe('#encrypt', () => {
     });
 
     it('should have the encrypted attribute', () => {
-      console.log('result', result);
-      console.log('result', result);
-      console.log('result', result);
-      console.log('result', result);
-      
-
       expect(result.encrypted.length).toEqual(50);
     });
   });

@@ -127,13 +127,9 @@ export default class LoggedIn extends React.Component {
           )}
         </div>
         {selectedVaultId ? (
-          <Fab
-            className="fab"
-            icon="delete_forever"
-            onClick={this.handleRemoveVaultClick.bind(this)}
-          />
+          <Fab icon="delete_forever" onClick={this.handleRemoveVaultClick.bind(this)} />
         ) : (
-          <Fab className="fab" icon="add" onClick={this.handleAddVaultClick.bind(this)} />
+          <Fab icon="add" onClick={this.handleAddVaultClick.bind(this)} />
         )}
         <Snackbar
           show={!!snackbarText}

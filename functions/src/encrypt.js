@@ -26,7 +26,7 @@ module.exports = context => async (data, functionContext) => {
    * The `functionContext` argument contains an `auth` attribute with the user's JWT/currentUser.
    * We're pulling the `uid` variable off of the JWT for security purposes. You can't fake the JWT.
    *
-   * `encrypteSecretWithPassword` takes the arguments `{ password, secret }` and returns a string.
+   * `encryptSecretWithPassword` takes the arguments `{ password, secret }` and returns a string.
    * We're going to set that string as the `encrypted` attribute of our `vaultDocRef`.
    * We could use `vaultDocRef.update(updates)` or `vaultDocRef.set(updates, { merge: true })`.
    * The second `{ merge: true }` argument turns `vaultDocRef.set` into an upsert. The upsert is
