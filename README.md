@@ -215,7 +215,7 @@ You can find the completed code on the `complete` branch of this repo: [sync-vau
 
 You can find the completed code on the `complete` branch of this repo: [update-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/update-vault.js)
 
-## Task 9: Call the Cloud Function
+## Task 9: Call the `encrypt` Cloud Function
 
 **File:** `src/database/encrypt-vault.js`
 
@@ -287,17 +287,51 @@ We're also setting up basic environment files to add to our `context` object. Th
 
 You can find the completed code on the `complete` branch of this repo: [encrypt.js](https://github.com/how-to-firebase/secrets/blob/complete/functions/src/encrypt.js)
 
-## Task 13: Export EncryptVault to the Cloud Functions runtime
+## Task 13: Export `encrypt` to the Cloud Functions runtime
 
 **File:** `functions/index.js`
 
 1. Import `../utilities/prod-context` as your production `context`.
-2. Instantiate an instance of our `encrypt` function using `Encrypt(context)`.
-3. Export a callable Cloud Function to `exports.encrypt` using [the docs](https://firebase.google.com/docs/functions/callable#write_and_deploy_the_callable_function) as a guide.
-4. Run `npm install` and `npx firebase deploy --only functions` to deploy.
-5. Open up the Functions logs in your Firebase Console to confirm that the deploy succeeded.
-5. Use the running `localhost` version of the app to attempt to encrypt a secret.
-6. Verify that the `encrypted` string was saved to Firestore.
-7. Watch the Functions logs to see each call to `encrypted` succeed.
+2. Import `Encrypt` from `./src/encrypt`
+3. Instantiate an instance of our `encrypt` function using `Encrypt(context)`.
+4. Export a callable Cloud Function to `exports.encrypt` using [the docs](https://firebase.google.com/docs/functions/callable#write_and_deploy_the_callable_function) as a guide.
+5. Run `npm install` and `npx firebase deploy --only functions` to deploy.
+6. Open up the Functions logs in your Firebase Console to confirm that the deploy succeeded.
+7. Use the running `localhost` version of the app to attempt to encrypt a secret.
+8. Verify that the `encrypted` string was saved to Firestore.
+9. Watch the Functions logs to see each call to `encrypt` succeed.
 
 You can find the completed code on the `complete` branch of this repo: [index.js](https://github.com/how-to-firebase/secrets/blob/complete/functions/index.js)
+
+## Task 14: Call the `decrypt` Cloud Function
+
+**File:** `src/database/decrypt-vault.js`
+
+You can find the completed code on the `complete` branch of this repo: [decrypt-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/decrypt-vault.js)
+
+## Task 15: Decrypt the vault
+
+**File:** `functions/src/decrypt.js`
+
+You can find the completed code on the `complete` branch of this repo: [decrypt.js](https://github.com/how-to-firebase/secrets/blob/complete/functions/src/decrypt.js)
+
+## Task 16: Export `decrypt` to the Cloud Functions runtime
+
+**File:** `functions/index.js`
+
+2. Import `Decrypt` from `./src/encrypt`
+3. Instantiate an instance of our `decrypt` function using `Decrypt(context)`.
+4. Export a callable Cloud Function to `exports.decrypt` using [the docs](https://firebase.google.com/docs/functions/callable#write_and_deploy_the_callable_function) as a guide.
+5. Run `npm install` and `npx firebase deploy --only functions` to deploy.
+6. Open up the Functions logs in your Firebase Console to confirm that the deploy succeeded.
+7. Use the running `localhost` version of the app to attempt to encrypt a secret.
+8. That clicking the 'DECRYPT' button in the UI will decrypt a record.
+9. Watch the Functions logs to see each call to `decrypt` succeed.
+
+You can find the completed code on the `complete` branch of this repo: [index.js](https://github.com/how-to-firebase/secrets/blob/complete/functions/index.js)
+
+## Task 17: Delete a Firestore record
+
+**File:** `src/database/remove-vault.js`
+
+You can find the completed code on the `complete` branch of this repo: [remove-vault.js](https://github.com/how-to-firebase/secrets/blob/complete/src/database/remove-vault.js)

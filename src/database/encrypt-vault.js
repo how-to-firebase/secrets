@@ -1,6 +1,6 @@
-export default (firebase, uid, vaultId, { password, secret }) => {
+export default (firebase, { password, secret, vaultId }) => {
   /**
-   * Task 9: Call the Cloud Function
+   * Task 9: Call the `encrypt` Cloud Function
    * Subject: Cloud Functions
    * Docs: https://firebase.google.com/docs/functions/callable#call_the_function
    *

@@ -4,23 +4,26 @@
 const { promisify } = require('util');
 const crypto = require('crypto');
 const pseudoRandomBytes = promisify(crypto.pseudoRandomBytes);
-const algorithm = 'aes-256-ctr';
+const algorithm = 'aes-256-gcm';
 
 module.exports = async ({ password, secret }) => {
   const ivBuffer = await pseudoRandomBytes(16);
   const key = crypto
     .createHash('md5')
     .update(password)
-    .digest('utf8');
+    .digest('hex');
   let cipher;
-  let crypted;
+  let encrypted;
+  let tagBuffer;
+
   try {
-    cipher = crypto.createCipheriv(algorithm, '3zTvzr3p67VC61jmV54rIYu1545x4TlY', ivBuffer);
-    crypted = cipher.update(secret, 'utf8', 'hex');
-    crypted += cipher.final('hex');
+    cipher = crypto.createCipheriv(algorithm, key, ivBuffer);
+    encrypted = cipher.update(secret, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    tagBuffer = cipher.getAuthTag();
   } catch (error) {
     console.error('error', error);
   }
 
-  return crypted;
+  return { encrypted, iv: ivBuffer.toString('hex'), tag: tagBuffer.toString('hex') };
 };
