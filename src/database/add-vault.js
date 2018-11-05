@@ -1,6 +1,6 @@
 export default async (firebase, uid) => {
   /**
-   * Task 4: Prepare to add a Firestore record
+   * Task 4: Add a Firestore record
    * Subject: Firestore
    * Docs: https://firebase.google.com/docs/firestore/manage-data/add-data
    *

@@ -6,6 +6,7 @@ import { SimpleTopAppBar } from '@rmwc/top-app-bar';
 import Vault from './vault';
 import Vaults from './vaults';
 import addVault from '../database/add-vault';
+import removeVault from '../database/remove-vault';
 import getVaults from '../database/get-vaults';
 
 import '@material/fab/dist/mdc.fab.css';
@@ -71,6 +72,17 @@ export default class LoggedIn extends React.Component {
     this.setSnackbarText('Vault added');
   }
 
+  async handleRemoveVaultClick() {
+    const { currentUser } = this.props;
+    const { selectedVaultId } = this.state;
+
+    await removeVault(this.firebase, { vaultId: selectedVaultId, uid: currentUser.uid });
+
+    this.handleBack();
+
+    this.setSnackbarText('Vault removed');
+  }
+
   async getUserVaults() {
     const { currentUser } = this.props;
 
@@ -114,7 +126,15 @@ export default class LoggedIn extends React.Component {
             />
           )}
         </div>
-        <Fab className="add-vault-fab" icon="add" onClick={this.handleAddVaultClick.bind(this)} />
+        {selectedVaultId ? (
+          <Fab
+            className="fab"
+            icon="delete_forever"
+            onClick={this.handleRemoveVaultClick.bind(this)}
+          />
+        ) : (
+          <Fab className="fab" icon="add" onClick={this.handleAddVaultClick.bind(this)} />
+        )}
         <Snackbar
           show={!!snackbarText}
           message={snackbarText}
